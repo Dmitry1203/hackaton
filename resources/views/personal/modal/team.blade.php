@@ -1,0 +1,130 @@
+        <div class="custom-modal user-profile-modal" style="display: none;" id="user-profile">
+            <div class="custom-modal-header">
+                <h6>Профиль участника</h6>
+            </div>
+            <div class="custom-modal-body">
+                <div class="user-profile-block">
+                    <div class="user-icon" id="card-user-avatar"></div>
+                    <div class="user-info">
+                        <div id="card-user-name" class="user-name body-text-large"></div>
+                        <div id="card-user-education" class="user-name body-text-regular"></div>
+                        <div id="card-user-experience" class="user-name body-text-regular"></div>
+                        <div id="card-user-about" class="user-name body-text-regular"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form
+            class="custom-modal actions-modal add-user-form"
+            style="display: none;"
+            id="add-user"
+            action="{{ Route('personal.team.invitation.create') }}"
+            method="POST"
+        >
+            @csrf
+            <div class="custom-modal-header">
+                <h6>Добавление участника </h6>
+            </div>
+            <div class="custom-modal-body">
+                <div class="form-message body-text-medium">
+                    Пригласить участника по email
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control" id="email"
+                        placeholder="Введите Email участника" data-required="1">
+                </div>
+            </div>
+            <div class="custom-modal-footer">
+                <div class="actions">
+                    <a class="button button__link button__small" data-fancybox-close>Отмена</a>
+                    <button type="submit" class="button button__block button__filled button__medium">Отправить
+                        запрос</button>
+                </div>
+            </div>
+        </form>
+
+        <form
+            class="custom-modal actions-modal team-out-form"
+            style="display: none;"
+            id="team-out"
+            action="{{ Route('personal.team.leave') }}"
+            method="POST"
+        >
+
+            @csrf
+
+            <div class="custom-modal-header">
+                <h6>Покинуть команду</h6>
+            </div>
+            <div class="custom-modal-body">
+                <div class="form-message body-text-medium">
+                    Вы действительно хотите покинуть команду {{ $myTeam[0]->team }}?
+                </div>
+
+                <div class="mt-3 body-text-small" style="padding:10px;background-color:#fff3cd">
+                    Если из команды удаляется последний (единственный) участник, команда прекращает своё существование, восстановить её будет невозможно.
+                </div>
+
+            </div>
+            <div class="custom-modal-footer">
+                <div class="actions">
+                    <a class="button button__link button__small" data-fancybox-close>Отмена</a>
+                    <button type="submit" class="button button__block button__filled button__medium">Покинуть</button>
+                </div>
+            </div>
+        </form>
+
+        <form
+            class="custom-modal actions-modal accept-application-form"
+            style="display: none;"
+            id="accept-application"
+            action="{{ Route('personal.team.application.accept') }}"
+            method="POST"
+        >
+            @csrf
+
+            <input type="hidden" id="application-accept-id" name="application-accept-id">
+
+            <div class="custom-modal-header">
+                <h6>Заявка участника</h6>
+            </div>
+            <div class="custom-modal-body">
+                <div class="form-message body-text-medium">
+                    Вы действительно хотите принять участника <span id="application-user-name"></span> в команду?
+                </div>
+            </div>
+            <div class="custom-modal-footer">
+                <div class="actions">
+                    <a class="button button__link button__small" data-fancybox-close>Отмена</a>
+                    <button type="submit" class="button button__block button__filled button__medium">Принять</button>
+                </div>
+            </div>
+        </form>
+
+        <form
+            class="custom-modal actions-modal decline-application-form"
+            style="display: none;"
+            id="decline-application"
+            action="{{ Route('personal.team.application.decline') }}"
+            method="POST"
+        >
+            @csrf
+
+            <input type="hidden" id="application-decline-id" name="application-decline-id">
+
+            <div class="custom-modal-header">
+                <h6>Заявка участника</h6>
+            </div>
+            <div class="custom-modal-body">
+                <div class="form-message body-text-medium">
+                    Вы действительно хотите отклонить участника <span id="application-user-name"></span>?
+                </div>
+            </div>
+            <div class="custom-modal-footer">
+                <div class="actions">
+                    <a class="button button__link button__small" data-fancybox-close>Отмена</a>
+                    <button type="submit" class="button button__block button__filled button__medium">Отклонить</button>
+                </div>
+            </div>
+        </form>
